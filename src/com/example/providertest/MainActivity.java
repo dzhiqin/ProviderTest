@@ -1,5 +1,7 @@
 package com.example.providertest;
 
+import com.example.providertest.R;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -58,7 +60,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		switch(v.getId()){
 		case R.id.btn_insert:
 			//添加数据
-			uri=Uri.parse("content://com.example.databasetest.provider/book");
+			uri=Uri.parse("content://com.example.databasetest.provider/Book");
 			
 			values.put("name", "A Clash of Kings");
 			values.put("author", "George Martin");
@@ -70,11 +72,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			break;
 		case R.id.btn_delete:
 			//删除,由于在uri中指定了一个newId，所以只会删除指定的那行数据，其他数据不受影响
-			uri=Uri.parse("content://com.example.databasetest.provider/book/"+newId);
+			uri=Uri.parse("content://com.example.databasetest.provider/Book/"+newId);
 			getContentResolver().delete(uri, null, null);
 			break;
 		case R.id.btn_update:
-			uri=Uri.parse("content://com.example.databasetest.provider/book/"+newId);
+			uri=Uri.parse("content://com.example.databasetest.provider/Book/"+newId);
 			values.put("name", "A Storm of Swords");
 			values.put("pages", 1221);
 			values.put("price", 24.21);
@@ -82,7 +84,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			break;
 		case R.id.btn_query:
 			//
-			uri=Uri.parse("content://com.example.databasetest.provider/book");
+			uri=Uri.parse("content://com.example.databasetest.provider/Book");
 			cursor=getContentResolver().query(uri, null, null, null, null);
 			while(cursor.moveToNext()){
 				String name=cursor.getString(cursor.getColumnIndex("name"));
